@@ -1,0 +1,22 @@
+class Solution {
+    public int removeDuplicates(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            return 0;
+        }
+        else if (nums.length == 1) {
+            return 1;
+        }
+        
+        int n = nums.length;
+        int i = 0;
+        // if j will move to next number every step, use for loop
+        for (int j = 1; j < n; j++) {
+            // do not know increase of these numbers or decrease
+            if (nums[j] != nums[i]) { 
+                nums[++i] = nums[j];
+            }
+        }
+        
+        return (i + 1); // i point to the last number;
+    }
+}
