@@ -1,0 +1,28 @@
+class Solution {
+    public int[] sortArray(int[] nums) {
+        if (nums == null || nums.length <= 1) {
+            return nums;
+        }
+        
+        for (int i = 0; i < nums.length - 1; i++) {
+            int min = i;//save index
+            for (int j = i + 1; j < nums.length; j++) {
+                if (nums[j] < nums[min]) {
+                    min = j; // the index of the smallest number
+                }
+            }
+            
+            swamp(nums, min, i);
+        }
+        
+        return nums;
+    }
+    
+    // swamp funtion
+    public void swamp(int[] nums, int i, int j) {
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
+    }
+
+}
