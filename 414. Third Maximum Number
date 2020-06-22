@@ -1,0 +1,54 @@
+class Solution {
+    public Integer newMin(HashSet<Integer> set) {
+        int min = Integer.MAX_VALUE;;
+        for (Integer i : set) {
+            if (i < min) {
+                min = i;
+            }
+        }
+        return min;
+    }
+    
+    public Integer findMax(HashSet<Integer> set) {
+        int max = Integer.MIN_VALUE;;
+        for (Integer i : set) {
+            if (i > max) {
+                max = i;
+            }
+        }
+        return max;
+    }
+    
+    public int thirdMax(int[] nums) {
+        HashSet<Integer> set = new HashSet<Integer>();
+        int min = nums[0];
+        
+        for (int i = 0; i < nums.length; i++) {
+            // already exist seam number in the set
+            if (set.contains(nums[i])) {
+                continue;
+            }
+            
+            if (set.size() < 3) {
+                set.add(nums[i]);
+                min = newMin(set);
+            }
+            //biger than the smallest one?
+            else if (nums[i] > min) {
+                set.remove(min);
+                set.add(nums[i]);
+                // renew min
+                min = newMin(set);
+            }
+        }
+        if (set.size() == 3) {
+            return min;
+        }
+        else {
+            return findMax(set);
+        }
+
+    }
+    
+
+}
