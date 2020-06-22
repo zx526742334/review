@@ -1,0 +1,23 @@
+class Solution {
+    public int fib(int N) {
+        if (N <= 1) {
+            return N;
+        } 
+        
+        int small = 0; //F(N-2)
+        int large = 1; //F(N-1)
+        
+        for (int i = 2; i <= N; i++) {
+            int temp = large;
+            large += small; //F(n) = f(n-2) + f(n-1)
+            small = temp; 
+        }
+        
+        return large;
+        
+    }
+}
+
+91. Decode Ways
+62. Unique Paths
+70. Climbing Stairs
