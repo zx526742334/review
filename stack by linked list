@@ -1,0 +1,40 @@
+class ListNode {
+  int value;
+  ListNode next;
+  public ListNode(int value) {
+  this.value = value;
+}
+
+class Stack {
+  ListNode head;
+  public Stack (){
+    head = new ListNode;
+    head.next = null;
+  }
+  
+  public void push(int a) {
+     ListNode temp = new ListNode;
+     temp.value = a;
+     temp.next = head.next;
+     head.next = temp;
+  }
+  
+  public Integer pop() {
+     if (head.next == null) {
+      return null;
+     }
+     int temp = head.next.value;
+     head.next = head.next.next;
+     return temp;
+     
+  }
+  
+  public Integer top() {
+    if (head.next == null) {
+      return null;
+     }
+     else {
+     return head.next.value;
+  }
+  
+}
