@@ -1,0 +1,22 @@
+public List<Interger> preorder(TreeNode root) {
+  List<Interger> res = new ArrayList<Integer>();
+  if (root == null) {
+    return;
+  }
+
+  Stack<TreeNode> stack = new Stack<TreeNode>();
+  stack.offerFirst(root);
+
+  while (!stack.isEmpty()) {
+    TreeNode cur = stack.pollFirst();
+    if (cur.right != null) {
+      stack.offerFirst(root.right);
+    }
+    if (cur.left != null) {
+      stack.offerFirst(root.left);
+    }
+    res.add(cur.val);
+  }
+
+  return res;
+}
