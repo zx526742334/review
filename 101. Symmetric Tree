@@ -1,0 +1,54 @@
+class Solution {
+    public boolean isSymmetric(TreeNode root) {
+        return helper(root, root);
+        
+    }
+    
+    public boolean helper(TreeNode r1, TreeNode r2) {
+        if (r1 == null && r2 == null) {
+            return true;
+        }
+        else if (r1 == null || r2 == null) {
+            return false;
+        }
+
+        return ((r1.val == r2.val)&& helper(r1.left, r2.right) && helper(r1.right, r2.left));
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////
+iterative
+
+class Solution {
+    public boolean isSymmetric(TreeNode root) {
+        Deque<TreeNode> l = new LinkedList<>(); // left side
+        Deque<TreeNode> r = new LinkedList<>(); // right side
+        
+        l.offerFirst(root);
+        r.offerFirst(root);
+        
+        while (!l.isEmpty()) {
+            TreeNode helperLeft = l.pollFirst();
+            TreeNode helperRight = r.pollFirst();
+            
+            if (helperLeft != null && helperRight != null) {
+                if (helperLeft.val != helperRight.val) {
+                    return false;
+                }
+                l.offerFirst(helperLeft.right);
+                r.offerFirst(helperRight.left);
+                l.offerFirst(helperLeft.left);
+                r.offerFirst(helperRight.right);
+                
+            }
+            else if (helperLeft == null ^ helperRight == null){
+                return false;
+            }
+              
+        }
+        
+        return true;
+        
+    }
+    
+}
